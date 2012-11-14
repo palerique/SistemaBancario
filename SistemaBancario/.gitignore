@@ -1,0 +1,14 @@
+*.class
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+
+# Estruturas do Eclipse e Maven #
+/.settings
+/.classpath
+/.project
+/bin
+/target
