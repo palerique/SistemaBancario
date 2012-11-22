@@ -1,5 +1,6 @@
 package org.financeiro.entidades;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -14,7 +15,9 @@ import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
 @Entity
-public class Movimentacao {
+public class Movimentacao implements Serializable {
+
+	private static final long serialVersionUID = 2060369745869767964L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

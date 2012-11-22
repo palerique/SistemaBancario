@@ -1,9 +1,13 @@
 package org.financeiro.entidades;
 
+import java.io.Serializable;
+
 import javax.persistence.Embeddable;
 
 @Embeddable
-public class DadosDeContato {
+public class DadosDeContato implements Serializable {
+
+	private static final long serialVersionUID = 115363775044674888L;
 
 	private String numero;
 	private TipoDeTelefone tipoDeTelefone;
