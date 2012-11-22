@@ -12,3 +12,5 @@
 /.project
 /bin
 /target
+/sistemaFinanceiro.db.properties
+/sistemaFinanceiro.db.script
