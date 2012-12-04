@@ -1,18 +1,21 @@
 package org.financeiro.entidades;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
 
 @Entity
-public class Gerente extends Funcionario implements Serializable {
+@Table(name = "Gerente")
+@PrimaryKeyJoinColumn(name = "id")
+public class Gerente extends Funcionario {
 
-	private static final long serialVersionUID = -5938025331002657839L;
-
+	private static final long serialVersionUID = 2886785156086764969L;
+	
 	@OneToMany
 	@OrderBy("nome")
 	private List<Pessoa> clientes = new ArrayList<Pessoa>();
@@ -24,5 +27,5 @@ public class Gerente extends Funcionario implements Serializable {
 	public void setClientes(List<Pessoa> clientes) {
 		this.clientes = clientes;
 	}
-
+	
 }

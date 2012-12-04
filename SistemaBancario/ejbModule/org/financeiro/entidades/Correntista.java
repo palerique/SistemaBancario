@@ -1,16 +1,19 @@
 package org.financeiro.entidades;
 
-import java.io.Serializable;
-
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
 
 @Entity
-public class Correntista extends Pessoa implements Serializable {
+@Table(name = "Correntista")
+@PrimaryKeyJoinColumn(name = "id")
+public class Correntista extends Pessoa {
 
-	private static final long serialVersionUID = -5037521952505078822L;
-
-	@ManyToOne
+	private static final long serialVersionUID = 8570582858488719834L;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
 	private Conta conta;
 
 	public Conta getConta() {
@@ -20,4 +23,5 @@ public class Correntista extends Pessoa implements Serializable {
 	public void setConta(Conta conta) {
 		this.conta = conta;
 	}
+	
 }

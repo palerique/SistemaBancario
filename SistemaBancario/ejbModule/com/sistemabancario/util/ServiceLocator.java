@@ -1,19 +1,32 @@
 package com.sistemabancario.util;
 
-import javax.naming.*;
-import com.sistemabancario.negocio.*;
+import java.util.Properties;
+
+import javax.naming.Context;
+import javax.naming.InitialContext;
+
+import org.financeiro.negocio.FachadaAgenciaRemote;
+import org.financeiro.negocio.FachadaGerenteRemote;
+
 
 public class ServiceLocator {
+
 	private static final String JNDI_FACHADA_GERENTE = "FachadaGerenteBean/remote";
-	private static final String JNDI_FACHADA_AGENCIA = "FachadaAgenciaBean/remote";
+	private static final String JNDI_FACHADA_AGENCIA = "FachadaAgencia/remote";
+
 	private static ServiceLocator serviceLocator = new ServiceLocator();
 	private InitialContext defaultContext;
 
 	private ServiceLocator() {
 		try {
-			defaultContext = new InitialContext();
-		} catch (Exception ex) {
-			System.out.println(ex);
+			Properties prop = new Properties();
+			prop.put(Context.INITIAL_CONTEXT_FACTORY,
+					"org.jnp.interfaces.NamingContextFactory");
+			prop.put(Context.PROVIDER_URL, "localhost:1099");
+
+			defaultContext = new InitialContext(prop);
+		} catch (Exception e) {
+			System.out.println(e);
 		}
 	}
 
@@ -24,7 +37,7 @@ public class ServiceLocator {
 	private Object getService(String jndiName) throws UtilitarioException {
 		try {
 			return defaultContext.lookup(jndiName);
-		} catch (NamingException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
@@ -39,12 +52,13 @@ public class ServiceLocator {
 		}
 	}
 
-//	public FachadaAgenciaRemote getFachadaAgencia() {
-//		try {
-//			return (FachadaAgenciaRemote) getService(JNDI_FACHADA_AGENCIA);
-//		} catch (UtilitarioException e) {
-//			// FIXME Disparar uma excecao personalizada
-//			return null;
-//		}
-//	}
+	public FachadaAgenciaRemote getFachadaAgencia() {
+		try {
+			return (FachadaAgenciaRemote) getService(JNDI_FACHADA_AGENCIA);
+		} catch (UtilitarioException e) {
+			// FIXME Disparar uma excecao personalizada
+			return null;
+		}
+	}
+
 }

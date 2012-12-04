@@ -1,31 +1,37 @@
 package org.financeiro.entidades;
 
-import java.io.Serializable;
-
+import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
 
 @Entity
-public class Funcionario extends Pessoa implements Serializable {
+@Table(name = "Funcionario")
+@PrimaryKeyJoinColumn(name = "id")
+public class Funcionario extends Pessoa {
 
-	private static final long serialVersionUID = 7432920988986402389L;
-
+	private static final long serialVersionUID = -6449347897815262877L;
+	
+	@Column(name = "matricula")
 	private String matricula;
-	private DadosDeContato dadosDeContato;
+	@Embedded
+	private DadosDeContato dados;
 
-	public DadosDeContato getDadosDeContato() {
-		return dadosDeContato;
-	}
-
-	public void setDadosDeContato(DadosDeContato dadosDeContato) {
-		this.dadosDeContato = dadosDeContato;
+	public String getMatricula() {
+		return matricula;
 	}
 
 	public void setMatricula(String matricula) {
 		this.matricula = matricula;
 	}
 
-	public String getMatricula() {
-		return matricula;
+	public DadosDeContato getDados() {
+		return dados;
 	}
 
+	public void setDados(DadosDeContato dados) {
+		this.dados = dados;
+	}
+	
 }
