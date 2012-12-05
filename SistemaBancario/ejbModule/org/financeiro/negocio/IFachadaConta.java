@@ -1,19 +1,16 @@
 package org.financeiro.negocio;
 
-import java.util.List;
+import java.util.*;
 
-import javax.ejb.Local;
+import javax.ejb.*;
 
-import org.financeiro.entidades.Conta;
-import org.financeiro.entidades.Correntista;
+import org.financeiro.entidades.*;
 
 @Local
 public interface IFachadaConta {
+  public List<Conta> consultaContasDoCorrentista(Correntista c);
 
-	public List<Conta> consultaContasDoCorrentista(Correntista c);
-	
-	public List<Conta> consultaContasSaldoNegativo();
-	
-	public void gravar(Conta conta);
-	
+  public List<Conta> consultaContasSaldoNegativo();
+
+  public void gravar(Conta conta);
 }
