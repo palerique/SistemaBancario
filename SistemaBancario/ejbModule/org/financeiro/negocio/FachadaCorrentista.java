@@ -10,14 +10,13 @@ import javax.persistence.Query;
 
 import org.financeiro.entidades.Correntista;
 
-
 @Stateless
 @Remote(value = FachadaCorrentistaRemote.class)
 public class FachadaCorrentista implements IFachadaCorrentista {
 
 	@PersistenceContext(unitName = "sistemabancario-pu")
 	private EntityManager em;
-	
+
 	@Override
 	public Correntista consultaPeloId(Long id) {
 		return em.find(Correntista.class, id);
@@ -32,14 +31,12 @@ public class FachadaCorrentista implements IFachadaCorrentista {
 
 	@Override
 	public void inserir(Correntista correntista) {
-		System.out.println("teste");
-		System.out.println(em);
 		em.merge(correntista);
 	}
 
 	@Override
 	public void excluir(Correntista correntista) {
-		em.refresh(correntista);
+		correntista = em.merge(correntista);
 		em.remove(correntista);
 	}
 

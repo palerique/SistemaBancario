@@ -10,7 +10,7 @@ public class FachadaConta implements IFachadaConta {
   private static final String SQL_CONSULTA_CONTAS_CORRENTISTA = "SELECT C FROM Conta C WHERE C.correntista = ?";
   private static final String SQL_CONSULTA_CONTAS_SALDO_NEGATIVO = "SELECT C FROM Conta C WHERE C.saldoAtual < 0";
   //
-  @PersistenceContext(unitName = "financeiro-pu")
+  @PersistenceContext(unitName = "sistemabancario-pu")
   private EntityManager em;
 
   public List<Conta> consultaContasDoCorrentista(Correntista c) {
