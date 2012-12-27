@@ -29,7 +29,7 @@ public class Pessoa implements Serializable {
 	private String endereco;
 	@Column(name = "telefone")
 	private String telefone;
-	@Transient
+	
 	private String dataDeNascimento;
 	
 	public Long getId() {
